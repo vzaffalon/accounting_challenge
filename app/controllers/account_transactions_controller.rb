@@ -1,4 +1,4 @@
-class AccountTransfersController < ApplicationController
+class AccountTransactionsController < ApplicationController
     before_action :authenticate
 
     def create
