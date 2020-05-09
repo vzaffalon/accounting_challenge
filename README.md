@@ -4,6 +4,8 @@ Executando o projeto:
 
 docker-compose up
 
+docker-compose run api bundle install
+
 docker-compose run api rake db:create
 
 docker-compose run api rake db:migrate
