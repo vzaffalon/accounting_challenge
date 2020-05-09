@@ -14,6 +14,7 @@ RUN mkdir -p $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile.lock ./
+
 RUN bundle install --binstubs
 
 COPY . .
