@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class AccountsController < ApiController
     before_action :authenticate
 
     def index

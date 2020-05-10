@@ -1,4 +1,4 @@
-class UserTokensController < ApplicationController
+class UserTokensController < ApiController
     before_action :authenticate, only: :destroy
 
     def create

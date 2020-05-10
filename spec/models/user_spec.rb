@@ -16,8 +16,8 @@ RSpec.describe "User", type: :model do
         end
 
         it 'should create user' do
-            expect(Users.all.length).to eq(1)
-            expect(Users.first.name).to eq(@user.name)
+            expect(User.all.length).to eq(1)
+            expect(User.first.name).to eq(@user.name)
         end
     end
     

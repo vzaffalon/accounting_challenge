@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UserController < ApiController
     before_action :authenticate
 
     def create
