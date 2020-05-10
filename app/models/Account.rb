@@ -11,5 +11,9 @@ class Account < ApplicationRecord
             account_id: self.id,
         )
     end
+
+    def available_amount
+        self.account_transactions.sum(:amount)
+    end
   
 end
