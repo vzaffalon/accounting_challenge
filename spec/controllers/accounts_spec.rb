@@ -38,12 +38,14 @@ RSpec.describe "accounts_controller", type: :request do
                 amount: 80000,
                 name: 'Victor Zaffalon LTDA',
                 user_id: @user.id,
+                number: '123456',
             )
 
             @account = Account.create(
                 amount: 120000,
                 name: 'Teste Zaffalon LTDA',
                 user_id: @user.id,
+                number: '134135'
             )
             
         end
@@ -60,14 +62,14 @@ RSpec.describe "accounts_controller", type: :request do
 
 
         it 'should return available amount' do
-            get "accounts/" + @account.id,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            get "accounts/" + @account.number,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
             expect(JSON.parse(response.body)['available_amount']).to eq(@account.amount)
         end
 
         it 'should return no account' do
-            inexistent_id = "99798"
-            get "accounts/" + inexistent_id,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
-            expect(JSON.parse(response.body)['error']).to eq('invalid account')
+            inexistent_account_number = "99798"
+            get "accounts/" + inexistent_account_number,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(JSON.parse(response.body)['error']).to eq('invalid account number')
         end
     
     end
