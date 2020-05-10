@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_181003) do
+ActiveRecord::Schema.define(version: 2020_05_10_001553) do
 
   create_table "account_transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "amount"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2020_05_09_181003) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "number"
+    t.index ["number"], name: "index_accounts_on_number", unique: true
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
