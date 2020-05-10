@@ -55,5 +55,21 @@ RSpec.describe "accounts_controller", type: :request do
             expect(JSON.parse(response.body)[0]['amount']).to eq(@account.amount)
         end
     end
+
+    describe ".available_amount" do
+
+
+        it 'should return available amount' do
+            get "accounts/" + @account.id,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(JSON.parse(response.body)['available_amount']).to eq(@account.amount)
+        end
+
+        it 'should return no account' do
+            inexistent_id = "99798"
+            get "accounts/" + inexistent_id,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(JSON.parse(response.body)['error']).to eq('invalid account')
+        end
+    
+    end
     
 end
