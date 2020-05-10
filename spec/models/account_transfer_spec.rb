@@ -19,9 +19,10 @@ RSpec.describe "AccountTransfer", type: :model do
                name: 'Rodrigo Peixoto LTDA'
            ) 
 
-           @destination_account_id = Account.create(
+           @destination_account = Account.create(
                amount: 40000,
-               name: 'Victor Zaffalon LTDA'
+               name: 'Victor Zaffalon LTDA',
+               user_id: @user.id,
            )
         end
 
@@ -30,7 +31,7 @@ RSpec.describe "AccountTransfer", type: :model do
                 @account_transfer = AccountTransfer.create(
                     amount: 40000,
                     source_acount_id: @source_account.id,
-                    destination_account_id: @destination_account_id,
+                    destination_account_id: @destination_account.id,
                 )
             end
 
