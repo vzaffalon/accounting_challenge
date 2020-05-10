@@ -1,6 +1,13 @@
 class AccountTransfersController < ApplicationController
     before_action :authenticate
 
+    def index
+        @account_transfers = AccountTransfer.filter_by_params(params)
+                                            .where("user_id = ?", @current_user.id)
+                                            .all
+        render json: @account_transfers, meta: { total: @account_transfers.count }
+    end
+
     def create
       @account_transfer = AccountTransfer.new(account_transfer_params)
       if @account_transfer.save

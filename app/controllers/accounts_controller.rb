@@ -24,11 +24,6 @@ class AccountsController < ApplicationController
       end      
     end
 
-
-    def available_amount
-
-    end
-
     def account_params
         params.permit(:name,
                       :amount,
