@@ -10,12 +10,10 @@ class UserTokensController < ApiController
 
         user = users.first
 
-        if user&.authenticate?(params[:password])
+        if user.authenticate(params[:password])
           user_token = UserToken.create(
             user_id: user.id,
             expiry_at: Time.current + UserToken::TTL,
-            user_agent: request.user_agent,
-            create_ip: request.remote_ip
           )
 
           render json: { token: user_token.token }

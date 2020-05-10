@@ -7,7 +7,7 @@ class AccountsController < ApiController
     end
 
     def show
-        @account = Account.where("user_id = :current_user_id and number = :number", current_user_id: @current_user.id, number: params[:account_number]).first
+        @account = Account.where("user_id = :current_user_id and number = :number", current_user_id: @current_user.id, number: params[:number]).first
         if @account
             render json: @account
         else
@@ -16,7 +16,8 @@ class AccountsController < ApiController
     end
 
     def create
-      @account = Accounts.new(account_params)
+      @account = Account.new(account_params)
+      @account.user_id = @current_user.id
       if @account.save
         render json: @account
       else
@@ -27,7 +28,6 @@ class AccountsController < ApiController
     def account_params
         params.permit(:name,
                       :amount,
-                      :user_id,
         )
     end
 end

@@ -2,6 +2,8 @@
 class Account < ApplicationRecord
     
     belongs_to :user
+    has_many :account_transactions
+    has_many :account_transfers
 
     after_create :generate_first_transaction
 

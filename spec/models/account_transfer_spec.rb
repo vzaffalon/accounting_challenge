@@ -16,13 +16,16 @@ RSpec.describe "AccountTransfer", type: :model do
 
            @source_account = Account.create(
                amount: 80000,
-               name: 'Rodrigo Peixoto LTDA'
+               name: 'Rodrigo Peixoto LTDA',
+               number: '12345',
+               user_id: @user.id,
            ) 
 
            @destination_account = Account.create(
                amount: 40000,
                name: 'Victor Zaffalon LTDA',
                user_id: @user.id,
+               number: '65443'
            )
         end
 
@@ -30,13 +33,13 @@ RSpec.describe "AccountTransfer", type: :model do
             before do
                 @account_transfer = AccountTransfer.create(
                     amount: 40000,
-                    source_acount_id: @source_account.id,
+                    source_account_id: @source_account.id,
                     destination_account_id: @destination_account.id,
                 )
             end
 
             it 'should create transaction' do
-                expect(AccountTransactions.all.length).to eq(4)
+                expect(AccountTransaction.all.length).to eq(4)
             end
 
             it 'should debit source account' do

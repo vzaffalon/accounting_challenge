@@ -26,8 +26,10 @@ RSpec.describe "Account", type: :model do
             end
 
             it 'should have account start amount' do
-                expect(AccountTransactions.all.length).to eq(1)
-                expect(AccountTransactions.first.amount).to eq(@account.amount)
+                expect(Account.all.length).to eq(1)
+                expect(Account.first.name).to eq('Victor Zaffalon LTDA')
+                expect(AccountTransaction.all.length).to eq(1)
+                expect(AccountTransaction.first.amount).to eq(@account.amount)
             end
         end
         

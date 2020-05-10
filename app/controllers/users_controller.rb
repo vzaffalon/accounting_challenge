@@ -1,5 +1,4 @@
-class UserController < ApiController
-    before_action :authenticate
+class UsersController < ApiController
 
     def create
       @user = User.new(user_params)

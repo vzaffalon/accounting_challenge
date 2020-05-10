@@ -13,8 +13,7 @@ RSpec.describe "account_transfers_controller", type: :request do
         )
 
         @user_token = UserToken.create(
-            email: 'zaffalonvictor@gmail.com',
-            password: 'password'
+            user_id: @user.id
         )
 
         @source_account = Account.create(
