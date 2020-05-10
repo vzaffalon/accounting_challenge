@@ -1,0 +1,59 @@
+require 'rails_helper'
+
+include ActiveJob::TestHelper
+
+RSpec.describe "accounts_controller", type: :request do
+
+    before do
+        @user = User.create(
+            name: 'Victor Zaffalon',
+            email: 'zaffalonvictor@gmail.com',
+            password: '123456',
+            password_confirmation: '123456'
+        )
+
+        @user_token = UserToken.create(
+            email: 'zaffalonvictor@gmail.com',
+            password: 'password'
+        )
+    end
+
+    describe ".create" do
+
+        it 'should have generated an account' do
+            name = "Victor Zaffalon LTDA"
+            amount = "80000"
+            post "/accounts", params: { name: name, amount: amount},  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(Accounts.all.length).to eq(1)
+            expect(JSON.parse(response.body)['name']).not_to eq(name)
+            expect(JSON.parse(response.body)['account_transactions'][0]['amount']).to eq(amount)
+        end
+
+    end
+
+    describe ".index" do
+
+        before do
+            @account = Account.create(
+                amount: 80000,
+                name: 'Victor Zaffalon LTDA',
+                user_id: @user.id,
+            )
+
+            @account = Account.create(
+                amount: 120000,
+                name: 'Teste Zaffalon LTDA',
+                user_id: @user.id,
+            )
+            
+        end
+
+
+        it 'should return accounts list' do
+            get "/accounts",  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(JSON.parse(response.body).length).to eq(2)
+            expect(JSON.parse(response.body)[0]['amount']).to eq(@account.amount)
+        end
+    end
+    
+end

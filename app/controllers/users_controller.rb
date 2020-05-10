@@ -1,10 +1,10 @@
 class UserController < ApplicationController
     before_action :authenticate
-    
+
     def create
       @user = User.new(user_params)
       if @user.save
-        render json: @account
+        render json: @user
       else
         render json: ErrorSerializer.serialize(@account), status: :unprocessable_entity
       end      
