@@ -2,9 +2,7 @@ class AccountTransfersController < ApiController
     before_action :authenticate
 
     def index
-        @account_transfers = AccountTransfer.filter_by_params(params)
-                                            .where("user_id = ?", @current_user.id)
-                                            .all
+        @account_transfers = AccountTransfer.filter_by_params(params).all
         render json: @account_transfers, meta: { total: @account_transfers.count }
     end
 

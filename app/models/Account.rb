@@ -8,10 +8,10 @@ class Account < ApplicationRecord
     after_create :generate_first_transaction
 
     def generate_first_transaction
-        AccountTransaction.create(
-            amount: self.amount,
-            account_id: self.id,
-        )
+        # AccountTransaction.create(
+        #     amount: self.amount,
+        #     account_id: self.id,
+        # )
     end
 
     def available_amount

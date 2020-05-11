@@ -2,7 +2,8 @@ class AccountTransactionsController < ApiController
     before_action :authenticate
 
     def index
-        @account_transactions = AccountTransaction.fiter_by_params(params).all
+        @account_transactions = AccountTransaction.filter_by_params(params)
+                                                  .all
         render json: @account_transactions, meta: { total: @account_transactions.count }
     end
 

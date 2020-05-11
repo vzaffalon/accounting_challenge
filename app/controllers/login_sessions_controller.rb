@@ -1,4 +1,4 @@
-class UserTokensController < ApiController
+class LoginSessionsController < ApiController
     before_action :authenticate, only: :destroy
 
     def create
@@ -11,12 +11,12 @@ class UserTokensController < ApiController
         user = users.first
 
         if user.authenticate(params[:password])
-          user_token = UserToken.create(
+          login_session = LoginSession.create(
             user_id: user.id,
-            expiry_at: Time.current + UserToken::TTL,
+            expiry_at: Time.current + LoginSession::TTL,
           )
 
-          render json: { token: user_token.token }
+          render json: { token: login_session.token }
         else
           render json: { message: 'invalid_login', code: 'invalid_login' }, status: :unprocessable_entity
         end
@@ -27,7 +27,7 @@ class UserTokensController < ApiController
 
     def destroy
       current_user_token.destroy
-      @current_user.user_tokens.destroy_all if params[:all]
+      @current_user.login_sessions.destroy_all if params[:all]
     end
 
     private

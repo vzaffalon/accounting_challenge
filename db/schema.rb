@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_10_001553) do
+ActiveRecord::Schema.define(version: 2020_05_10_204619) do
 
   create_table "account_transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "amount"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2020_05_10_001553) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "user_tokens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "login_sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "token"
     t.datetime "expiry_at"
     t.bigint "user_id"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_tokens_on_user_id"
+    t.index ["user_id"], name: "index_login_sessions_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

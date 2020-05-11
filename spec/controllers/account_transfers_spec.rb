@@ -12,7 +12,7 @@ RSpec.describe "account_transfers_controller", type: :request do
             password_confirmation: '123456'
         )
 
-        @user_token = UserToken.create(
+        @user_token = LoginSession.create(
             user_id: @user.id
         )
 

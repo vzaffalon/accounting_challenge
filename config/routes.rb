@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   post 'accounts', controller: 'accounts', action: 'create'
   post 'account_transfers', controller: 'account_transfers', action: 'create'
   post 'account_transactions', controller: 'account_transactions', action: 'create'
-  post 'user_tokens', controller: 'user_tokens', action: 'create'
+  post 'login_sessions', controller: 'login_sessions', action: 'create'
   post 'users', controller: 'users', action: 'create'
 end
