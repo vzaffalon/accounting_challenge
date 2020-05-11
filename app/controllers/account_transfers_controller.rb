@@ -11,7 +11,7 @@ class AccountTransfersController < ApiController
       if @account_transfer.save
         render json: @account_transfer
       else
-        render json: ErrorSerializer.serialize(@account_transfer), status: :unprocessable_entity
+        render json: {error: "source account has not enought amount"}, status: :unprocessable_entity
       end      
     end
 

@@ -20,12 +20,14 @@ RSpec.describe "account_transfers_controller", type: :request do
             amount: 80000,
             name: 'Victor Zaffalon LTDA',
             user_id: @user.id,
+            number: '12345'
         )
 
         @destination_account = Account.create(
             amount: 120000,
             name: 'Teste Zaffalon LTDA',
             user_id: @user.id,
+            number: '1234'
         )
     end
 
@@ -47,7 +49,7 @@ RSpec.describe "account_transfers_controller", type: :request do
         it 'should return accounts transfers' do
             get "/accounts",  headers: { "Authorization" => "Bearer #{@user_token.token}" }
             expect(JSON.parse(response.body).length).to eq(2)
-            expect(JSON.parse(response.body)[0]['available_amount']).to eq(@account.available_amount)
+            expect(JSON.parse(response.body)[0]['source_account']['available_amount']).to eq( @source_account.available_amount)
         end
     end
     

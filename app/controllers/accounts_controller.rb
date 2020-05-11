@@ -28,6 +28,7 @@ class AccountsController < ApiController
     def account_params
         params.permit(:name,
                       :amount,
+                      :number
         )
     end
 end

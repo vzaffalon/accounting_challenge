@@ -15,15 +15,29 @@ RSpec.describe "accounts_controller", type: :request do
         @user_token = LoginSession.create(
           user_id: @user.id
         )
+
+        @account_1 = Account.create(
+            amount: 80000,
+            name: 'Victor Zaffalon LTDA',
+            user_id: @user.id,
+            number: '123456',
+        )
+
+        @account_2 = Account.create(
+            amount: 120000,
+            name: 'Teste Zaffalon LTDA',
+            user_id: @user.id,
+            number: '134135'
+        )
     end
 
     describe ".create" do
 
         it 'should have generated an account' do
             name = "Victor Zaffalon LTDA"
-            amount = "80000"
-            post "/accounts", params: { name: name, amount: amount},  headers: { "Authorization" => "Bearer #{@user_token.token}" }
-            expect(Account.all.length).to eq(1)
+            amount = 80000
+            post "/accounts", params: { name: name, amount: amount, number: '1234189'},  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(Account.all.length).to eq(3)
             expect(JSON.parse(response.body)['name']).to eq(name)
             expect(JSON.parse(response.body)['account_transactions'][0]['amount']).to eq(amount)
         end
@@ -32,37 +46,18 @@ RSpec.describe "accounts_controller", type: :request do
 
     describe ".index" do
 
-        before do
-            @account_1 = Account.create(
-                amount: 80000,
-                name: 'Victor Zaffalon LTDA',
-                user_id: @user.id,
-                number: '123456',
-            )
-
-            @account_2 = Account.create(
-                amount: 120000,
-                name: 'Teste Zaffalon LTDA',
-                user_id: @user.id,
-                number: '134135'
-            )
-            
-        end
-
-
         it 'should return accounts list' do
             get "/accounts",  headers: { "Authorization" => "Bearer #{@user_token.token}" }
             expect(JSON.parse(response.body).length).to eq(2)
-            expect(JSON.parse(response.body)[0]['amount']).to eq(@account_1.amount)
+            expect(JSON.parse(response.body)[0]['amount'].to_i).to eq(@account_1.amount)
         end
     end
 
     describe ".available_amount" do
 
-
         it 'should return available amount' do
-            get "/accounts/" + @account.number,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
-            expect(JSON.parse(response.body)['available_amount']).to eq(@account.amount)
+            get "/accounts/" + @account_1.number,  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            expect(JSON.parse(response.body)['available_amount'].to_i).to eq(@account_1.amount)
         end
 
         it 'should return no account' do

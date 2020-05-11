@@ -8,15 +8,19 @@ class AccountTransfer < ApplicationRecord
     after_create :generate_account_transactions
 
     def generate_account_transactions
-        @debit_transaction = AccountTransaction.create(
-            amount: -amount,
-            account_id: self.source_account.id
-        )
-        if @debit_transaction
-            AccountTransaction.create(
-                amount: amount,
-                account_id: self.destination_account.id
+        if self.source_account.available_amount >= -amount
+            @debit_transaction = AccountTransaction.create(
+                amount: -amount,
+                account_id: self.source_account.id
             )
+            if @debit_transaction
+                AccountTransaction.create(
+                    amount: amount,
+                    account_id: self.destination_account.id
+                )
+            end
+        else
+            return false
         end
     end
 
