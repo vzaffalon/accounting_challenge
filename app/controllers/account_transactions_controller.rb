@@ -12,7 +12,7 @@ class AccountTransactionsController < ApiController
       if @account_transfer.save
         render json: @account_transfer
       else
-        render json: ErrorSerializer.serialize(@account_transfer), status: :unprocessable_entity
+        render json: @account_transfer.errors, status: :unprocessable_entity
       end      
     end
 

@@ -21,7 +21,7 @@ class AccountsController < ApiController
       if @account.save
         render json: @account
       else
-        render json: ErrorSerializer.serialize(@account), status: :unprocessable_entity
+        render json: @account.errors, status: :unprocessable_entity
       end      
     end
 

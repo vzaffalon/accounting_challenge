@@ -5,23 +5,31 @@ class AccountTransfer < ApplicationRecord
     belongs_to :source_account, class_name: 'Account'
     belongs_to :destination_account, class_name: 'Account'
   
-    after_create :generate_account_transactions
+    validate :has_enough_amount
+
+    before_create :generate_account_transactions
+
+
+    def has_enough_amount
+        @source_account = Account.find(self.source_account_id)
+        if @source_account.available_amount >= self.amount.abs
+            return true
+        else
+            self.errors.add(:account_transfers, "error")
+        end
+    end
 
     def generate_account_transactions
-        if self.source_account.available_amount >= -amount
             @debit_transaction = AccountTransaction.create(
-                amount: -amount,
+                amount: -self.amount,
                 account_id: self.source_account.id
             )
             if @debit_transaction
                 AccountTransaction.create(
-                    amount: amount,
+                    amount: self.amount,
                     account_id: self.destination_account.id
                 )
             end
-        else
-            return false
-        end
     end
 
     def self.filter_by_params(params)
