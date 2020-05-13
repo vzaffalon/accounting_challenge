@@ -1,6 +1,7 @@
 
 class AccountTransaction < ApplicationRecord
     
+    validates :amount, :presence => true
     belongs_to :account
     
     def self.filter_by_params(params)

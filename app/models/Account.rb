@@ -1,5 +1,9 @@
 
 class Account < ApplicationRecord
+
+    validates :name, :presence => true
+    validates :amount, :presence => true
+    validates :number, :presence => true
     
     belongs_to :user
     has_many :account_transactions
