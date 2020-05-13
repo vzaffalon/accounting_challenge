@@ -2,6 +2,10 @@
 
 class AccountTransfer < ApplicationRecord
     
+    validates :amount, :presence => true
+    validates :source_account_id, :presence => true
+    validates :destination_account_id, :presence => true
+
     belongs_to :source_account, class_name: 'Account'
     belongs_to :destination_account, class_name: 'Account'
   
