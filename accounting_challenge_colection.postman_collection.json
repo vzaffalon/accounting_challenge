@@ -223,6 +223,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:3000/accounts/1234721",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer d2dcf50b3aa3754d078e61db2129b9e6",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/accounts/1234721?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						"1234721"
+					],
+					"query": [
+						{
+							"key": "password_connuamoumfirmation",
+							"value": "123456",
+							"disabled": true
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer 4e0d8273d468097e25ae1a5c98a5bfb1",
+							"disabled": true
+						}
+					]
+				},
+				"description": "list account balance"
+			},
+			"response": []
 		}
 	]
 }
