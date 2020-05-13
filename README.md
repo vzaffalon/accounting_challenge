@@ -50,6 +50,11 @@ Novo fluxo:
 
 Obs: O token de acesso expira a cada 30 minutos.
 
+### Saldo de uma conta
+
+O saldo de uma conta é calculado pela soma dos valores das account_transactions.
+Ao criar uma conta uma account_transaction com amount positivo é criado a partir do valor de amount fornecido na hora de criar a conta.
+
 
 ### Valores em reais da aplicação
 
