@@ -5,7 +5,7 @@ include ActiveJob::TestHelper
 RSpec.describe "login_sessions_controller", type: :request do
 
     before do
-        @user = FactoryBot.create(:user)
+        @user = FactoryBot.create(:user, email: 'zaffalonvictor@gmail.com')
     end
 
 

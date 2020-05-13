@@ -9,16 +9,18 @@ RSpec.describe "accounts_controller", type: :request do
            :user
         )
 
-        @login_session = FactoryBot.create(:login_session)
+        @login_session = FactoryBot.create(:login_session, user: @user)
 
         @account_1 = FactoryBot.create(
             :account,
             amount: 80000,
+            user: @user
         )
 
         @account_2 = FactoryBot.create(
             :account,
             amount: 120000,
+            user: @user
         )
     end
 
