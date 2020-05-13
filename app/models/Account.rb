@@ -4,6 +4,7 @@ class Account < ApplicationRecord
     validates :name, :presence => true
     validates :amount, :presence => true
     validates :number, :presence => true
+    validates_uniqueness_of :number, :scope => [:number]
     
     belongs_to :user
     has_many :account_transactions

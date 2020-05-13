@@ -64,7 +64,7 @@ No projeto está o arquivo accounting_challenge_collection.json com uma coleçã
 #### Rota: /users
 Método: POST
 
-Parámetros: `<name>, <email>, <password>, <password_confirmation>`
+Parâmetros: `<name>, <email>, <password>, <password_confirmation>`
 
 Exemplo de retorno de sucesso: 
 ```
@@ -87,9 +87,9 @@ Exemplo de retorno de falha:
 
 Método: POST
 
-Parámetros: `<email>, <password>`
+Parâmetros: `<email>, <password>`
 
-Exemplo de retono de sucesso:
+Exemplo de retorno de sucesso:
 ```
 {
     "token": "8320afbdf7a8be9676924929f73f32be"
@@ -117,7 +117,7 @@ Exemplo de retorno nos métodos da aplicação quando o token expira:
 
 Método: POST
 
-Parámetros: `<number>, <name>, <amount>`
+Parâmetros: `<number>, <name>, <amount>`
 
 Headers:
 
@@ -165,7 +165,7 @@ Exemplo de retorno de erro:
 #### Rota: /account_transfers
 Método: POST
 
-Parámetros: `<amount>, <source_account_id>, <destination_account_id>`
+Parâmetros: `<amount>, <source_account_id>, <destination_account_id>`
 
 Headers:
 `key: Authorization`, `value: Bearer + token`
@@ -199,11 +199,54 @@ Exemplo de retorno de erro:
 }
 ```
 
+### Rota para obter saldo disponível:
+#### Rota: /accounts/:number
+Método: Get
+
+Headers:
+`key: Authorization`, `value: Bearer + token`
+
+Valor disponível: `available_amount`
+
+Exemplo de retorno de sucesso:
+```
+{
+    "id": 12,
+    "name": "teste",
+    "amount": 80000,
+    "available_amount": 80000,
+    "number": "1234720",
+    "user": {
+        "id": 7,
+        "name": "teste usuario",
+        "email": "zaffalonvictor7@gmail.com"
+    },
+    "account_transactions": [
+        {
+            "id": 78,
+            "amount": 80000,
+            "account_id": 12,
+            "deleted_at": null,
+            "created_at": "2020-05-13T16:49:37.000Z",
+            "updated_at": "2020-05-13T16:49:37.000Z"
+        }
+    ]
+}
+```
+
+Exemplo de retorno de erro:
+```
+{
+    "error": "invalid account number"
+}
+```
+
+
 ### Rota obter transações da conta:
 #### Rota: /account_transactions
 Método: Get
 
-Parámetros: `<account_id>`
+Parâmetros: `<account_id>`
 
 Headers:
 `key: Authorization`, `value: Bearer + token`
@@ -251,3 +294,5 @@ Exemplo de retorno de sucesso:
 **factory_bot_rails**: Criação de factories para instanciação de models para implementação dos testes do rspec.
 
 **database_cleaner-active_record**: Limpa o banco de dados antes de cada teste.
+
+**faker**: Generate fake data.

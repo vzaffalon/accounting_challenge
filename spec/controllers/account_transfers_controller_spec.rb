@@ -5,30 +5,13 @@ include ActiveJob::TestHelper
 RSpec.describe "account_transfers_controller", type: :request do
 
     before do
-        @user = User.create(
-            name: 'Victor Zaffalon',
-            email: 'zaffalonvictor@gmail.com',
-            password: '123456',
-            password_confirmation: '123456'
-        )
+        @user = FactoryBot.create(:user)
 
-        @login_session = LoginSession.create(
-            user_id: @user.id
-        )
+        @login_session = FactoryBot.create(:login_session)
 
-        @source_account = Account.create(
-            amount: 80000,
-            name: 'Victor Zaffalon LTDA',
-            user_id: @user.id,
-            number: '12345'
-        )
+        @source_account = FactoryBot.create(:account, amount: 80000)
 
-        @destination_account = Account.create(
-            amount: 120000,
-            name: 'Teste Zaffalon LTDA',
-            user_id: @user.id,
-            number: '1234'
-        )
+        @destination_account = FactoryBot.create(:account, amount: 120000)
     end
 
     describe ".create" do

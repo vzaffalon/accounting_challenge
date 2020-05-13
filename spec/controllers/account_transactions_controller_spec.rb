@@ -6,30 +6,13 @@ RSpec.describe "account_transactions_controller", type: :request do
 
     describe ".index" do
         before do
-            @user = User.create(
-                name: 'Victor Zaffalon',
-                email: 'zaffalonvictor@gmail.com',
-                password: '123456',
-                password_confirmation: '123456'
-            )
+            @user = FactoryBot.create(:user)
     
-            @login_session = LoginSession.create(
-              user_id: @user.id
-            )
+            @login_session = FactoryBot.create(:login_session)
     
-            @source_account = Account.create(
-                amount: 80000,
-                name: 'Rodrigo Peixoto LTDA',
-                number: '123458',
-                user_id: @user.id,
-            ) 
+            @source_account = FactoryBot.create(:account)
  
-            @destination_account = Account.create(
-                amount: 40000,
-                name: 'Victor Zaffalon LTDA',
-                user_id: @user.id,
-                number: '65443'
-            )
+            @destination_account = FactoryBot.create(:account)
 
             @account_transfer = AccountTransfer.create(
                 amount: 40000,
