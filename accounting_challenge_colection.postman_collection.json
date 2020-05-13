@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "e95732c1-8396-4595-b52a-3ad3c8b8305b",
+		"name": "accounting_challenge_colection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/account_transactions?account_id=6",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 8320afbdf7a8be9676924929f73f32be",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/account_transactions?account_id=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"account_transactions"
+					],
+					"query": [
+						{
+							"key": "password_connuamoumfirmation",
+							"value": "123456",
+							"disabled": true
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer 4e0d8273d468097e25ae1a5c98a5bfb1",
+							"disabled": true
+						},
+						{
+							"key": "account_id",
+							"value": "6"
+						}
+					]
+				},
+				"description": "list account transactions from account"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/account_transfers?amount=40000&source_account_id=5&destination_account_id=6",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 8320afbdf7a8be9676924929f73f32be",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/account_transfers?amount=40000&source_account_id=5&destination_account_id=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"account_transfers"
+					],
+					"query": [
+						{
+							"key": "password_connuamoumfirmation",
+							"value": "123456",
+							"disabled": true
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer 4e0d8273d468097e25ae1a5c98a5bfb1",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "40000"
+						},
+						{
+							"key": "source_account_id",
+							"value": "5"
+						},
+						{
+							"key": "destination_account_id",
+							"value": "6"
+						}
+					]
+				},
+				"description": "transfer money from one account to another"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/accounts?name=teste&amount=80000&number=123479",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 8320afbdf7a8be9676924929f73f32be",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/accounts?name=teste&amount=80000&number=123479",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "teste"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"disabled": true
+						},
+						{
+							"key": "Authorization",
+							"value": "Bearer 4e0d8273d468097e25ae1a5c98a5bfb1",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "80000"
+						},
+						{
+							"key": "number",
+							"value": "123479"
+						}
+					]
+				},
+				"description": "create account for use"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/login_sessions?email=zaffalonvictor@gmail.com&password=123456",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/login_sessions?email=zaffalonvictor@gmail.com&password=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login_sessions"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "teste",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "zaffalonvictor@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456",
+							"disabled": true
+						}
+					]
+				},
+				"description": "login user and get token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/users?name=teste usuario&email=zaffalonvictor@gmail.com&password=123456&password_confirmation=123456",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users?name=teste usuario&email=zaffalonvictor@gmail.com&password=123456&password_confirmation=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "teste usuario"
+						},
+						{
+							"key": "email",
+							"value": "zaffalonvictor@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

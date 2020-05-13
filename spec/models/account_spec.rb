@@ -19,10 +19,10 @@ RSpec.describe "Account", type: :model do
             before do
                 @account = Account.create(
                     amount: 80000,
+                    number: '1234333',
                     name: 'Victor Zaffalon LTDA',
                     user_id: @user.id,
-                ) 
-               
+                )   
             end
 
             it 'should have account start amount' do

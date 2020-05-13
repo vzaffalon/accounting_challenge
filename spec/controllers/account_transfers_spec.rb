@@ -12,7 +12,7 @@ RSpec.describe "account_transfers_controller", type: :request do
             password_confirmation: '123456'
         )
 
-        @user_token = LoginSession.create(
+        @login_session = LoginSession.create(
             user_id: @user.id
         )
 
@@ -35,7 +35,7 @@ RSpec.describe "account_transfers_controller", type: :request do
 
         it 'should have generated an account transfer' do
             transfer_amount = 40000
-            post "/account_transfers", params: { amount: transfer_amount, source_acount_id: @source_account.id, destination_account_id: @destination_account.id},  headers: { "Authorization" => "Bearer #{@user_token.token}" }
+            post "/account_transfers", params: { amount: transfer_amount, source_account_id: @source_account.id, destination_account_id: @destination_account.id},  headers: { "Authorization" => "Bearer #{ @login_session.token}" }
             expect(AccountTransfer.all.length).to eq(1)
             expect(AccountTransaction.all.length).to eq(4)
             expect(JSON.parse(response.body)['source_account']['available_amount']).to eq(@source_account.amount - transfer_amount)
@@ -45,11 +45,17 @@ RSpec.describe "account_transfers_controller", type: :request do
     end
 
     describe ".index" do
-
+        before do
+            @account_transfer = AccountTransfer.create(
+                amount: 40000,
+                source_account_id: @source_account.id,
+                destination_account_id: @destination_account.id,
+            )
+        end
         it 'should return accounts transfers' do
-            get "/accounts",  headers: { "Authorization" => "Bearer #{@user_token.token}" }
-            expect(JSON.parse(response.body).length).to eq(2)
-            expect(JSON.parse(response.body)[0]['source_account']['available_amount']).to eq( @source_account.available_amount)
+            get "/account_transfers",  headers: { "Authorization" => "Bearer #{ @login_session.token}" }
+            expect(JSON.parse(response.body).length).to eq(1)
+            expect(JSON.parse(response.body)[0]['amount']).to eq( @account_transfer.amount)
         end
     end
     

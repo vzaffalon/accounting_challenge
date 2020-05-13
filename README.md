@@ -57,6 +57,9 @@ Os valores em reais da aplicação são representados em inteiro.
 
 Exemplo: R$ 4530,55 -> 453055
 
+### Arquivo do postman com exemplo de rotas:
+No projeto está o arquivo accounting_challenge_collection.json com uma coleção de requests que pode ser importada no Postman para testar a api.
+
 ### Rota de criação de conta de usuário:
 #### Rota: /users
 Método: POST
