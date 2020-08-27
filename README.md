@@ -37,9 +37,9 @@ Executando testes do rspec
 $ docker-compose run api rspec
 ```
 
-### Ampliei um pouco a lógica da aplicação
+### Lógica da aplicação
 
-Ao invés de o usuário receber um token quando cria uma conta de banco e esse token nunca expirar, ele cria uma conta com login e senha, acessa essa conta de login e pode criar várias contas de banco.
+O usuário recebe um token quando cria uma conta de banco e esse token nunca expirar, ele cria uma conta com login e senha, acessa essa conta de login e pode criar várias contas de banco.
 
 Novo fluxo:
 1. Usúario cria conta de acesso
